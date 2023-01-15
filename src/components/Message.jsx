@@ -18,7 +18,7 @@ const Message = ({ msg }) => {
                 <span>Just now</span>
             </div>
             <div className="messageContent">
-                <p>{msg.text}</p>
+                {msg.text.trim() !== '' && <p>{msg.text}</p>}
                 {msg.img && <img src={msg.img} alt="attachment" />}
             </div>
         </div>

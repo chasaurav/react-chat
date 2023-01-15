@@ -11,7 +11,14 @@ const Chat = () => {
     return (
         <div className="chat">
             <div className="chatInfo">
-                <span>{data.user?.displayName}</span>
+                <div className="name-section">
+                    <span className="hamburger-menu show-mobile-tablet" onClick={() => dispatch({ type: "TOGGLE_SIDEBAR" })}>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                    <span>{data.user?.displayName}</span>
+                </div>
                 <div className="chatIcons">
                     <img src={Cam} alt="cam.png" />
                     <img src={Add} alt="add.png" />
@@ -20,7 +27,13 @@ const Chat = () => {
             </div>
 
             <Messages />
-            <Input />
+            {data.chatId != 'null' ? <Input /> : <div style={{ height: '50px', padding: '10px', background: '#fff', textAlign: 'center' }}>
+                <p>
+                    <strong>This is the Beta version of the App</strong>, <br />
+                    <small>Click the Menu icon. Search by username to start chatting.</small> <br />
+                    <small>New Feature updates & bug fixes comming soon.</small>
+                </p>
+            </div>}
         </div>
     )
 }

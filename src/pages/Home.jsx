@@ -1,16 +1,14 @@
-import { Sidebar, Search, Navbar, Messages, Input, Chats, Chat } from '../components'
+import { Sidebar, Chat } from '../components'
+import { useChatContext } from "../context/ChatContext";
 
 const Home = () => {
+    const { data } = useChatContext();
+
     return (
         <div className='home'>
             <div className="container">
                 <Sidebar />
-                <Chat />
-                {/* <Search />
-                <Navbar />
-                <Messages />
-                <Input />
-                <Chats /> */}
+                {!data.showSidebar && <Chat />}
             </div>
         </div>
     )

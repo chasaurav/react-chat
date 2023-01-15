@@ -9,7 +9,8 @@ export const ChatContextProvider = ({ children }) => {
 
     const INITIAL_STATE = {
         chatId: "null",
-        user: {}
+        user: {},
+        showSidebar: false,
     };
 
     const chatReducer = (state, action) => {
@@ -17,8 +18,15 @@ export const ChatContextProvider = ({ children }) => {
             case "CHANGE_USER":
                 return {
                     user: action.payload,
-                    chatId: currentUser.uid > action.payload.uid ? currentUser.uid + action.payload.uid : action.payload.uid + currentUser.uid
+                    chatId: currentUser.uid > action.payload.uid ? currentUser.uid + action.payload.uid : action.payload.uid + currentUser.uid,
+                    showSidebar: false,
                 }
+            case "TOGGLE_SIDEBAR":
+                return {
+                    user: state.user,
+                    chatId: state.chatId,
+                    showSidebar: !state.showSidebar,
+                };
             default:
                 return state;
         }

@@ -1,18 +1,36 @@
 @mixin mobile {
-    @media screen and (min-width: 480px) {
+    @media screen and (max-width: 480px) {
         @content;
     }
 }
 
 @mixin tablet {
-    @media screen and (min-width: 768px) {
+    @media screen and (max-width: 1024px) {
         @content;
     }
 }
 
 @mixin laptop {
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: 1024px) {
         @content;
+    }
+}
+
+.show-mobile-tablet {
+    @include laptop {
+        display: none !important;
+    }
+}
+
+.hide-mobile-tablet {
+    @include mobile {
+        display: none !important;
+    }
+    @include tablet {
+        display: none !important;
+    }
+    @include laptop {
+        display: unset;
     }
 }
 
@@ -117,15 +135,22 @@
     .container {
         border: 1px solid white;
         border-radius: 10px;
-        width: 65%;
+        width: 75%;
         height: 80%;
         display: flex;
         overflow: hidden;
+        
+        @include mobile {
+            width: 95%;
+        }
+
+        @include tablet {
+            width: 95%;
+        }
 
         .sidebar {
             flex: 1;
             background-color: #3e3c61;
-            position: relative;
 
             .navbar {
                 display: flex;
@@ -176,6 +201,9 @@
                         border: none;
                         outline: none;
                         color: white;
+                        width: 100%;
+                        height: 100%;
+                        font-size: 15px;
 
                         &::placeholder {
                             color: lightgray;
@@ -227,6 +255,26 @@
                 justify-content: space-between;
                 padding: 10px;
                 color: lightgray;
+
+                .name-section {
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    flex: 1;
+
+                    .hamburger-menu {
+                        cursor: pointer;
+
+                        span {
+                            border: 1.5px solid white;
+                            border-radius: 10px;
+                            width: 20px;
+                            display: block;
+                            margin: 2px auto;
+                        }
+                    }
+
+                }
             }
 
             .chatIcons {
