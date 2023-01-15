@@ -3,6 +3,7 @@ import { doc, setDoc, collection, query, where, getDoc, getDocs, updateDoc, serv
 import { db } from "../firebase";
 import { useAuthContext } from "../context/AuthContext";
 import { useChatContext } from "../context/ChatContext";
+import SearchIcon from '../img/search.png';
 
 const Search = () => {
     const [username, setUsername] = useState('');
@@ -63,6 +64,11 @@ const Search = () => {
         <div className="search">
             <div className="searchForm">
                 <input type="text" placeholder="Find a user" onKeyDown={handleKey} value={username} onInput={e => setUsername(e.target.value)} />
+                <img src={SearchIcon} alt="search.png" onClick={handleSearch} style={{
+                    width: "17px",
+                    padding: "1px 10px",
+                    filter: "invert(1)"
+                }} />
             </div>
             {err && <p style={{
                 color: "gray",
